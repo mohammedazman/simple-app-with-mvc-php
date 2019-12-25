@@ -1,0 +1,28 @@
+<?php include VIEW.'header.phtml'; ?>
+<a href="/car/index/">View Cars</a>
+<a href="/car/edit/">Edit Cars</a>
+<a href="/car/delete/">Delete Cars</a>
+<h1>show cars list</h1>
+<?php if (array_key_exists('cars',$this->view_data)){
+
+  $table='<table border=2>';
+  foreach ($this->view_data['cars'] as  $car) {
+    $carInfo=explode(',',$car);
+    $table.='<tr>';
+    foreach ($carInfo as  $value) {
+      $table.="<td>".$value."</td>";
+    }
+      $table.='</tr>';
+  }
+$table.="</table>";
+echo $table;
+}
+
+
+
+
+
+
+  ?>
+
+<?php include VIEW.'footer.phtml'; ?>

@@ -1,0 +1,23 @@
+<?php
+$action=$this->getActionِِ();
+print $action; ?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><?php echo(isset($this->pageTitle)?$this->pageTitle:'page n'); ?></title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <header>
+  <nav>
+    <ul>
+      <li>
+        <a href="/home/index" <?php echo ($action=='index'?'class="active"':''); ?>>index</a>
+      </li>
+      <li>
+        <a href="/home/aboutUs" <?php echo ($action=='aboutUs'?'class="active"':''); ?>>about Us</a>
+      </li>
+    </ul>
+  </nav>
+    </header>
