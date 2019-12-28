@@ -1,0 +1,26 @@
+<?php 
+
+include VIEW.'header.phtml'; ?>
+
+<h1>show cars list</h1>
+<?php if (array_key_exists('news',$this->view_data)){
+
+  $table='<table border=2>';
+
+  foreach ($this->view_data['news'] as $new) {
+      $table.='<tr> <td>'.$new["title"].'</td></tr>';
+  }
+
+$table.="</table>";
+echo $table;
+}
+
+
+
+
+
+
+  ?>
+
+<?php include VIEW.'footer.phtml';
+?>

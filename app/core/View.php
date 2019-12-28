@@ -24,6 +24,10 @@ public function getActionِِ()
 {
   return (explode('\\',$this->view_file)[1]);
 }
+public function getController()
+{
+  return (explode('\\',$this->view_file)[0]);
+}
 
 }
 

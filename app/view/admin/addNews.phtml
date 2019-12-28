@@ -1,0 +1,86 @@
+<?php include "top.phtml";
+$categoryErr='';
+ ?>
+
+                <section class="content">
+
+                  <div class="box">
+                                                  <div class="box-header">
+                                                    <h2 class="card-header info-color white-text text-center py-4">
+                                                        <strong>اضافة مقال جديد</strong>
+                                                    </h2>
+                                                  </div><!-- /.box-header -->
+                                                  <div class="box-body table-responsive">
+                  <div class="card">
+
+
+
+                      <form id='newpost' method='post' action='' enctype='multipart/form-data'>
+                          <div class="newArt">
+                          <h4>اختار الفئه * <?php echo $categoryErr;?> </h4>
+                          <?php
+                             if (array_key_exists('category',$this->view_data)){
+
+
+
+                          $html = '<select class="mdb-select form-control" name="category">
+                          <option value="" disabled selected>Choose category </option>';
+
+                          foreach ($this->view_data['category'] as $categories) {
+                                      $html .= '  <option value="' . $categories["id"] . '" >' . $categories['cat_title'] . '</option>';
+                                   }
+
+
+                          $html .='</select>';
+                          echo $html;
+                        }
+                           ?>
+                          <br>
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4> العنوان * </h4></label>
+                              <input type="text" name="title" placeholder="Title" id="materialContactFormName" class="form-control"><br><br>
+
+                          </div>
+
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4>المحتوى: *</h4></label>
+                  <textarea form ="newpost" name="text" id="textarea" cols="45" rows="10" id="materialContactFormName" class="form-control"></textarea><br><br>
+                          </div>
+
+
+                          <div class="form-check">
+                                        <label class="form-check-label" for="materialContactFormCopy"><h4>اذا كان النوع تحليلي</h4></label>
+                              <p><input type="checkbox" name="analytics" value="yes" class="form-check-input" id="materialContactFormCopy"> نوع المقال تحليلي "analytics"?</p>
+
+                          </div>
+
+
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4>هاشتاق:</h4></label>
+                            <p>يرجى ادخال الهشتاق باتباع التعليمات الاتية:</p>
+                            <p>1. يتم فصل كل هاستاق بمسافة;</p>
+                            <p>2. كل هشاتق يبتداء بعلامة '#' ;</p>
+                            <p>3. يجب ان لايكون هناك مسافة بين علامة  '#' والهاستاق;</p>
+                            <p>3. يجب ان لايحتوي الهاشتاق على مسافة;</p>
+
+                  <input type="text" name="tags" placeholder="Tags" id="materialContactFormName" class="form-control"><br>
+                          </div>
+
+
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4>رفع الصورة</h4></label>
+                            <input type="file" name="fileToUpload" id="materialContactFormName" class="form-control"><br>
+
+                          </div>
+
+
+
+                          <button type="submit" name="submit" class="btn btn-default" value="submit">رفع</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                </section><!-- /.content -->
+
+      <?php include "buttom.phtml" ?>
