@@ -11,7 +11,7 @@ class adminController extends Controller
 $this->model('News');
     $this->view('admin'.DIRECTORY_SEPARATOR.'index',['news'=>$this->model->all()]);
 
-    $this->view->pageTitle='This Page of news admin index';
+    $this->view->pageTitle='admin index';
     $this->view->render();
 
   }
@@ -24,21 +24,8 @@ $this->model('News');
 
 //do validation to POST
 
-        if (empty($_POST['category']))
-        {
-            $categoryErr = "Please input category";
-            $postErr = 1;
-        }
-        if (empty($_POST['title']))
-        {
-            $titleErr = "Please input title";
-            $postErr = 1;
-        }
-        if (empty($_POST['text']))
-        {
-            $textErr = "Please input text";
-            $postErr = 1;
-        }
+     $validate=Validation::required(['','category','title','text','title']);
+
 
         // check if there is file in posting and process the uploading
       if ($_FILES)
@@ -54,7 +41,7 @@ $this->model('News');
 
       # add new record to the database
 
-      if ($postErr === 0)
+      if ($validate['status'] == 1)
       {
     # prepare the array of post to send it to News model to insert to news table
 
@@ -94,6 +81,57 @@ $this->model('News');
         $this->view('admin'.DIRECTORY_SEPARATOR.'addNews',['category'=>$this->model->all()]);
 
         $this->view->pageTitle='This Page of news admin index';
+        $this->view->render();
+  }
+
+
+  //controller for adding user by admin
+  public function addUser()
+  {
+    
+    // check if there submit
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $validate= Validation::required(['','password','email','username']); //sure that first element in array most be null
+
+
+if ($validate['status']==1) {
+  $post= array(
+                ':email' => htmlentities($_REQUEST['email']),
+                ':username' => htmlentities($_REQUEST['username']),
+                ':password' => Hashing::init($_REQUEST['password']),
+                ':type' =>  htmlentities($_REQUEST['type']),
+                 ':status' => isset($_REQUEST['status'])?htmlentities($_REQUEST['status']):0,
+                 );
+
+                 $this->model('Users');
+
+
+                 if ($this->model->add($post)) {
+                   Message::setMessage('msgState',1);
+                   Message::setMessage('main','تم اضافة المستخدم بنجاح');
+                 }
+}
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    # show form view  to add new user
+
+
+        $this->view('admin'.DIRECTORY_SEPARATOR.'addUser');
+
+        $this->view->pageTitle='Add New User';
         $this->view->render();
   }
 

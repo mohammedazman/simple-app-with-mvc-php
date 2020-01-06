@@ -1,3 +1,110 @@
 <?php  include VIEW.'header.phtml' ?>
-<h1>home page</h1>
+<!--Slider-->
+<section id="slide-show">
+ <div id="slider" class="sl-slider-wrapper">
+
+
+
+        <?php
+         if (array_key_exists('news',$this->view_data)){
+
+        $html='';
+
+          foreach ($this->view_data['news'] as $new) {
+
+                   if (empty($new["picture"]) or $new["picture"]=='default.png' ) {
+                     continue;
+                   }
+                  $html.='  <!--Slider Items-->
+                    <div class="sl-slider">
+                  <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="-9" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+                      <div class="sl-slide-inner">
+                          <div class="container">';
+                  $html.='<img class="pull-right"  src="/pictures/'.$new["picture"].'" alt="'.$new["title"].'" />';
+                  $html.=' <h2>'.$new["title"].'</h2>';
+                  $html.='<h3 class="gap">'.$new["tags"].'</h3> ';
+                  $html.=' <a href=news?id="'.$new["id"].'" class="btn btn-large btn-transparent"> عرض</a>';
+                    $html.=' </div></div></div>
+                    </div>
+                    <!--/Slider Items-->';
+          }
+
+
+        echo $html;
+        }
+          ?>
+
+
+
+<!--Slider Next Prev button-->
+<nav id="nav-arrows" class="nav-arrows">
+    <span class="nav-arrow-prev"><i class="icon-angle-left"></i></span>
+    <span class="nav-arrow-next"><i class="icon-angle-right"></i></span>
+</nav>
+<!--/Slider Next Prev button-->
+
+</div>
+<!-- /slider-wrapper -->
+</section>
+<!--/Slider-->
+
+<div class="container main">
+
+
+<?php
+$html = '';
+
+foreach ($this->view_data['category'] as $key=>$value)
+{
+
+    $category = $value["cat_title"];
+    $category_id = $value["id"];
+
+    if (!empty(Helper::haveItem($category_id))) {
+      $html .= '<div class="panel panel-default">
+      <div class="panel-heading" ><a  href="categories/' . $category_id . '.' . "php" . '"><h1 class="cat_header alert alert-success text-center ">' . ucfirst($category) . '</h1></a></div><br>';
+
+      $html .= '<div class="articles">' ;
+      $html .= '<div class="panel-body">';
+      foreach ($this->view_data['news'] as $key => $value) {
+        if ($value['category']==$category_id) {
+          $html .=  '
+
+          <div class="blog-item well ">
+          <a href="#"><h2>'.$value["title"].'</h2></a>
+          <div class="blog-meta clearfix">
+              <p class="pull-left">
+               <i class="icon-user"></i> by <a href="#">mohammed azman</a> | <i class="icon-folder-close"></i> category <a href="#">'.$category.'</a> | <i class="icon-calendar"></i> '.$value["date"].'
+            </p>
+
+            <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">'.Helper::countComments($value["id"]).' Comments</a></p>
+            </div>
+          <p><img src="/pictures/'.$value["picture"].'" width="100%" style="height:50%;" alt="" /></p>
+          <p>'.$value["text"].'</p><br><br><br><br><br>
+          <br>
+          <a class="btn btn-link " href="/home/viewPost/'.$value['id'] .'">Read More <i class="icon-angle-right"></i></a>
+          <br><hr>
+
+          </div>';
+          // code...
+        }
+
+      }
+      $html .='</div>  </div>
+       <div class="panel-footer"> <a href="#">المزيد...</a> </div>
+       </div><br>';
+
+
+    }
+
+}
+
+echo $html;
+ ?>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+
 <?php  include VIEW.'footer.phtml' ?>

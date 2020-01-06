@@ -1,0 +1,282 @@
+<?php  include VIEW.'header.phtml' ?>
+
+<section class="title">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span6">
+                <h1><?php print $this->view_data['news']['title']; ?></h1>
+            </div>
+            <div class="span6">
+                <ul class="breadcrumb pull-right">
+                    <li><a href="index.html"><?php print $this->getController(); ?></a> <span class="divider">/</span></li>
+                    <li><a href="#"><?php print $this->getActionِِ(); ?></a> <span class="divider">/</span></li>
+                    <li class="active"><?php print $this->view_data['news']['id']; ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / .title -->
+
+<section id="about-us" class="container">
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="blog">
+              <div class="blog-item well">
+                <?php
+                $html='';
+                 if (array_key_exists('news',$this->view_data)){
+
+  $value=$this->view_data['news'];
+                  $html.='<a href="#"><h2>'.$value["title"].'</h2></a>
+                  <div class="blog-meta clearfix">
+                      <p class="pull-left">
+                       <i class="icon-user"></i> by <a href="#">mohammed azman</a> | <i class="icon-folder-close"></i> category <a href="#">'.Helper::catName($value["category"]).'</a> | <i class="icon-calendar"></i> '.$value["date"].'
+                    </p>
+
+                    <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">'.Helper::countComments($value["id"]).'  Comments</a></p>
+                    </div>
+                    <p><img src="/pictures/'.$value["picture"].'" width="100%" style="height:50%;" alt="" /></p>
+                    <p>'.$value["text"].'</p><br><br><br><br><br>
+                    <br>';
+
+
+
+              $html.='  <div class="tag">Tags :';
+                 $tags=Helper::tags($value["tags"]);
+                 foreach ($tags as $key => $value) {
+                   $html.='<a href="/home/findTag/'.substr($value, 1).'"><span class="label label-success"> '.$value.' </span></a>
+                   ';
+                 }
+
+            $html.='  </div>';
+            }
+
+            echo $html;
+              echo '
+                <div class="user-info media box">
+                    <div class="pull-left">
+                        <img src="images/sample/avatar.jpg" alt="" />
+                    </div>
+                    <div class="media-body">
+                        <h5 style="margin-top: 0">John Doe</h5>
+                        <p>.</p>
+                        <div class="author-meta">
+                            <a class="btn btn-social btn-facebook" href="#"><i class="icon-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="icon-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="icon-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="icon-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <p>&nbsp</p>';
+                  ?>
+
+                <div id="comments" class="comments">
+
+                    <h4><?php
+                      $news=$this->view_data['news'];
+                     echo Helper::countComments($news["id"]); ?> Comments</h4>
+                    <div class="comments-list">
+                      <?php
+                      $html='';
+
+
+ if (array_key_exists('comments',$this->view_data)){
+                           if (!empty($this->view_data['comments'])) {
+                             // code...
+
+
+
+                        foreach ($this->view_data['comments'] as $key => $comments) {
+
+
+                                $html.='  <div class="comment media">
+                                    <div class="pull-left">
+                                        <img class="avatar" src="/pictures/default.png" alt="" />
+                                    </div>
+
+                                    <div class="media-body">
+                                        <strong>Posted by <a href="#">'.Helper::userName($comments["user_id"]).'</a></strong><br>
+                                        <small>'.$comments["date_com"].'</small><br>
+                                        <p>'.$comments["text_com"].'</p>
+                                    </div>
+                                </div>';
+
+                        }
+
+
+
+                      }
+
+                      else {
+                        $html.='<div class="comment media">
+                        <h2>لايوجد تعليقات لهذا المقال !</h2>
+                        </div>';
+                      }}
+                      echo $html;
+                        ?>
+
+
+
+
+                    </div>
+
+                    <!-- Start Comment Form -->
+                    <div class="comment-form">
+                        <h4>Leave a Comment</h4>
+                        <p class="muted">Make sure you enter the (*) required information where indicated. HTML code is not allowed.</p>
+                        <form name="comment-form" id="comment-form" method="post" action="/home/addComment">
+
+
+                                    <input  name="userID" value="<?php echo Session::get('userID'); ?>"  hidden />
+                                    <input  name="news_id" value="<?php echo $value["id"]; ?>"  hidden />
+
+
+                            <textarea rows="10" name="comment" id="message"  class="input-block-level" placeholder="Message"></textarea>
+                            <input type="submit" value="Submit Comment" class="btn btn-large btn-primary" />
+                        </form>
+                    </div>
+                    <!-- End Comment Form -->
+
+                </div>
+
+            </div>
+            <!-- End Blog Item -->
+
+
+        </div>
+    </div>
+    <aside class="span4">
+        <div class="widget search">
+            <form>
+                <input type="text" class="input-block-level" placeholder="Search">
+            </form>
+        </div>
+        <!-- /.search -->
+
+        <div class="widget ads">
+            <div class="row-fluid">
+                <div class="span6">
+                    <a href="#"><img src="images/ads/ad1.png" alt=""></a>
+                </div>
+
+                <div class="span6">
+                    <a href="#"><img src="images/ads/ad2.png" alt=""></a>
+                </div>
+            </div>
+            <p> </p>
+            <div class="row-fluid">
+                <div class="span6">
+                    <a href="#"><img src="images/ads/ad3.png" alt=""></a>
+                </div>
+
+                <div class="span6">
+                    <a href="#"><img src="images/ads/ad4.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <!-- /.ads -->
+
+        <div class="widget widget-popular">
+            <h3>Popular Posts</h3>
+            <div class="widget-blog-items">
+                <div class="widget-blog-item media">
+                    <div class="pull-left">
+                        <div class="date">
+                            <span class="month">Jun</span>
+                            <span class="day">24</span>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
+                    </div>
+                </div>
+
+                <div class="widget-blog-item media">
+                    <div class="pull-left">
+                        <div class="date">
+                            <span class="month">Jun</span>
+                            <span class="day">24</span>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
+                    </div>
+                </div>
+
+                <div class="widget-blog-item media">
+                    <div class="pull-left">
+                        <div class="date">
+                            <span class="month">Jun</span>
+                            <span class="day">24</span>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Popular Posts -->
+
+        <div class="widget">
+            <h3>Blog Categories</h3>
+            <div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <ul class="unstyled">
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Updates</a></li>
+                            <li><a href="#">Tutorial</a></li>
+                            <li><a href="#">News</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="span6">
+                        <ul class="unstyled">
+                            <li><a href="#">Joomla</a></li>
+                            <li><a href="#">Wordpress</a></li>
+                            <li><a href="#">Drupal</a></li>
+                            <li><a href="#">Magento</a></li>
+                            <li><a href="#">Bootstrap</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Category Widget -->
+
+        <div class="widget">
+            <h3>Tag Cloud</h3>
+            <ul class="tag-cloud unstyled">
+                <li><a class="btn btn-mini btn-primary" href="#">CSS3</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">HTML5</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">WordPress</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">Joomla</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">Drupal</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">Bootstrap</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">jQuery</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">Tutorial</a></li>
+                <li><a class="btn btn-mini btn-primary" href="#">Update</a></li>
+            </ul>
+        </div>
+        <!-- End Tag Cloud Widget -->
+
+        <div class="widget">
+            <h3>Archive</h3>
+            <ul class="archive arrow">
+                <li><a href="#">May 2013</a></li>
+                <li><a href="#">April 2013</a></li>
+                <li><a href="#">March 2013</a></li>
+                <li><a href="#">February 2013</a></li>
+            </ul>
+        </div>
+        <!-- End Archive Widget -->
+
+    </aside>
+</div>
+
+</section>
+<?php  include VIEW.'footer.phtml' ?>

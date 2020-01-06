@@ -1,0 +1,73 @@
+<?php  include VIEW.'header.phtml' ?>
+
+
+
+<div class="container main">
+
+
+<?php
+$html = '';
+
+$value=$this->view_data['categories'];
+
+
+    $category = $value["cat_title"];
+    $category_id = $value["id"];
+
+    if (!empty(Helper::haveItem($category_id))) {
+      $html .= '<div class="panel panel-default">
+      <div class="panel-heading" ><a  href="categories/' . $category_id . '.' . "php" . '"><h1 class="cat_header alert alert-success text-center ">' . ucfirst($category) . '</h1></a></div><br>';
+
+      $html .= '<div class="articles">' ;
+      $html .= '<div class="panel-body">';
+      foreach ($this->view_data['news'] as $key => $value) {
+        if ($value['category']==$category_id) {
+          $html .=  '
+
+          <div class="blog-item well ">
+          <a href="#"><h2>'.$value["title"].'</h2></a>
+          <div class="blog-meta clearfix">
+              <p class="pull-left">
+               <i class="icon-user"></i> by <a href="#">mohammed azman</a> | <i class="icon-folder-close"></i> category <a href="#">'.$category.'</a> | <i class="icon-calendar"></i> '.$value["date"].'
+            </p>
+
+            <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">'.Helper::countComments($value["id"]).' Comments</a></p>
+            </div>
+          <p><img src="/pictures/'.$value["picture"].'" width="100%" style="height:50%;" alt="" /></p>
+          <p>'.$value["text"].'</p><br><br><br><br><br>
+          <br>
+          <a class="btn btn-link " href="/home/viewPost/'.$value['id'] .'">Read More <i class="icon-angle-right"></i></a>
+          <br><hr>
+
+          </div>';
+          // code...
+        }
+
+
+      }
+      $html .='</div>  </div>
+       <div class="panel-footer"> <a href="#">المزيد...</a> </div>
+       </div><br>';
+
+
+    }
+    else {
+      $html .= '<div class="panel panel-default">
+      <div class="panel-heading" ><a  href="categories/' . $category_id . '.' . "php" . '"><h1 class="cat_header alert alert-success text-center ">' . ucfirst($category) . '</h1></a></div><br>
+        <h1>لايوجد اي عنصر !</h1>
+        <br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.';
+
+    }
+
+
+
+echo $html;
+ ?>
+
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+
+<?php  include VIEW.'footer.phtml' ?>

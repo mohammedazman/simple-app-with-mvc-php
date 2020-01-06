@@ -307,7 +307,7 @@
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="index">
+                            <a href="/admin/index">
                               <small class="badge pull-right bg-red"><?php
 
                                print Helper::countNews();  ?></small>
@@ -315,7 +315,7 @@
 
                                 <span> عرض الاخبار </span>
 
-                              
+
 
                             </a>
                             <ul class="treeview-menu">
@@ -339,7 +339,7 @@
                             </ul>
                         </li>
                         <li class="treeview">
-                            <a href="addNews">
+                            <a href="/admin/addNews">
                                 <i class="fa fa-edit"></i> <span>اضافة مقالة</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -350,7 +350,7 @@
                             </ul>
                         </li>
                         <li class="treeview">
-                            <a href="#">
+                            <a href="/admin/addUser">
                                 <i class="fa fa-table"></i> <span>الحسابات</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -400,7 +400,7 @@
                         <small>لوحة التحكم</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> <?php
+                        <li><a href="/admin/index"><i class="fa fa-dashboard"></i> <?php
                         $controller=$this->getController();
                         print $controller; ?></a></li>
                         <li class="active"><?php
@@ -408,5 +408,9 @@
                         print $action; ?></li>
                     </ol>
                 </section>
+
+                <?php
+
+                 echo Message::check('main');  ?>
 
                 <!-- Main content -->

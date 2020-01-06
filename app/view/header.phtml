@@ -1,23 +1,82 @@
-<?php
-$action=$this->getActionِِ();
-print $action; ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title><?php echo(isset($this->pageTitle)?$this->pageTitle:'page n'); ?></title>
-    <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <header>
-  <nav>
-    <ul>
-      <li>
-        <a href="/home/index" <?php echo ($action=='index'?'class="active"':''); ?>>index</a>
-      </li>
-      <li>
-        <a href="/home/aboutUs" <?php echo ($action=='aboutUs'?'class="active"':''); ?>>about Us</a>
-      </li>
-    </ul>
-  </nav>
-    </header>
+
+
+    <!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+          <title><?php echo(isset($this->pageTitle)?$this->pageTitle:'page n'); ?></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="/css/bootstrap.min1.css">
+        <link rel="stylesheet" href="/css/bootstrap-responsive.min1.css">
+        <link rel="stylesheet" href="/css/font-awesome.min1.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/sl-slide.css">
+        <link rel="stylesheet" href="/css/bootstrap-rtl.min.css">
+          <link rel="stylesheet" href="/css/bootstrap-rtl.css">
+          <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="/css/style_news.css">
+
+        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="/images/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+    </head>
+
+    <body style="background:white;">
+
+      <!--Header-->
+      <header class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+              <div class="container">
+                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </a>
+                  <a id="logo" class="pull-left" href="index"></a>
+                  <div class="nav-collapse collapse pull-right">
+                      <ul class="nav">
+                          <li class="active"><a href="/home/index">الرئيسية</a></li>
+                          <li><a href="/home/aboutUs">من نحن</a></li>
+                          <li><a href="/home/services">خدماتنا</a></li>
+                          <li><a href="/home/Portfolio">نبذة</a></li>
+                          <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">التصنيفات <i class="icon-angle-down"></i></a>
+                              <ul class="dropdown-menu">
+                                <?php
+                                foreach ($this->view_data['category'] as $key=>$value)
+                                {
+                                echo'  <li ><a  href="/home/categoryItem/'.$value["id"].'">'.$value["cat_title"].'     <small class="mr-5 badge badge-info">  '.Helper::countposts($value["id"]).'</small>  </a></li>';
+
+                                }
+                                 ?>
+
+
+                              </ul>
+                          </li>
+                          <li><a href="/home/articles">مقالات</a></li>
+                          <li><a href="/home/contact">تواصل معانا</a></li>
+                          <li class="login">
+
+                            <?php
+
+                            if(Session::logged()) echo '<a  href="/home/logout"><i class="icon-unlock">logout</i></a>'; else echo'<a data-toggle="modal" href="#loginForm"><i class="icon-lock">login</i></a>'; ?>
+
+                          </li>
+                      </ul>
+                  </div><!--/.nav-collapse -->
+              </div>
+          </div>
+      </header>
+      <!-- /header -->
+      <?php echo Message::check('main');  ?>

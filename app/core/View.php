@@ -29,6 +29,7 @@ public function getController()
   return (explode('\\',$this->view_file)[0]);
 }
 
+
 }
 
 

@@ -51,12 +51,79 @@
        }
    }
 
+ #return COUNT of news
    public static function  countNews()
    {
      $db= new Model();
      $counter =$db->query("select count(*) as count from news");
      return $counter[0]['count'];
    }
+
+
+
+   #check if category have posts or news @param is of category from news row
+   public static function haveItem($value)
+   {
+     $db= new Model();
+     $counter =$db->query("SELECT *  FROM news WHERE category = $value ");
+     return $counter;
+   }
+
+   #return string of category's name @param id of category that come from news row
+   public static function catName($id)
+   {
+
+     $counter =DB::init()->query("SELECT *  FROM categories WHERE id = $id ");
+     if (!empty($counter)) {
+       return $counter[0]['cat_title'];
+     }
+
+   }
+
+
+#return COUNT of comments for post @param is id of post
+   public static function countComments($id)
+   {
+
+     $counter =DB::init()->query("SELECT COUNT(*) AS count FROM comments WHERE news_id= $id ");
+
+       return $counter[0]['count'];
+
+
+   }
+
+   #return COUNT of news for category @param is id of category
+      public static function countposts($id)
+      {
+
+        $counter =DB::init()->query("SELECT COUNT(*) AS count FROM news WHERE category= $id ");
+
+          return $counter[0]['count'];
+
+
+      }
+
+      #return string of user's name @param id of usernaem that come from comments or athor action row
+      public static function userName($id)
+      {
+
+        $username =DB::init()->query("SELECT *  FROM users WHERE id = $id ");
+        if (!empty($username)) {
+          return $username[0]['username'];
+        }
+
+      }
+
+      #returns tags  for each post
+
+    public static  function tags($subject){
+
+
+          $tags = preg_split('/\s/', $subject);
+
+
+          return $tags;
+      }
 
  }
 

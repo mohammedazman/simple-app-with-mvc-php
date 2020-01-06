@@ -14,6 +14,7 @@ class Model {
         try {
           $this->dsn="mysql:host=localhost;dbname=news";
             $this->pdoObject=new PDO($this->dsn,Model::DB_USER,Model::DB_PASS);
+            
             $this->pdoObject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
