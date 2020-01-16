@@ -39,6 +39,37 @@ $oStmt->execute($aData);
 
 }
 
+//
+public function delete($id)
+{
+  $oStmt = $this->db->preparation('DELETE FROM users WHERE id=?');
+
+      return $oStmt->execute($id);
+}
+
+
+//
+
+public function update($aData)
+{
+        $oStmt = $this->db->preparation('UPDATE  users
+                                        SET   email=:email, username=:username, password=:password, type=:type, status=:status
+                                        WHERE id=:id ');
+        return $oStmt->execute($aData);
+
+}
+
+//
+
+public function find($aData)
+{
+  $oStmt = $this->db->preparation('SELECT * FROM users WHERE id =?');
+$oStmt->execute($aData);
+      return $oStmt->fetch();
+
+}
+
+
 }
 
 

@@ -1,0 +1,96 @@
+<?php include "top.phtml";
+$categoryErr='';
+$news=$this->view_data['news'];
+ ?>
+
+                <section class="content ">
+
+                  <div class="box">
+                                                  <div class="box-header">
+                                                    <h2 class="card-header info-color text-primary text-center py-4">
+                                                        <strong>اضافة مقال جديد</strong>
+                                                    </h2>
+                                                  </div><!-- /.box-header -->
+                                                  <div class="box-body table-responsive">
+                  <div class="card " >
+
+
+
+                      <form id='newpost' method='post' action='' enctype='multipart/form-data'>
+                          <div class="newArt">
+                          <h4>اختار الفئه * </h4>
+                          <?php
+                             if (array_key_exists('category',$this->view_data)){
+
+
+
+                          $html = '<select class="mdb-select  form-control" name="category">
+                          <option value="" disabled selected>Choose category </option>';
+
+                          foreach ($this->view_data['category'] as $categories) {
+                                      $html .= '  <option value="' . $categories["id"] .'"';
+                                      if ($news['category']==$categories['id']) {
+                                        $html .= 'selected';
+                                      }
+                                    $html.='>' . $categories['cat_title'] . '</option>';
+                                   }
+
+
+                          $html .='</select>';
+
+                        }
+                        echo $html;
+                           ?>
+                          <br>
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4> العنوان * </h4></label>
+                              <input  type="text" value="<?php echo $news['title']; ?>" name="title" placeholder="Title" id="materialContactFormName" class="form-control "><br><br>
+
+                          </div>
+
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4>المحتوى: *</h4></label>
+                  <textarea form ="newpost" value="" name="text" id="textarea" cols="45" rows="10" id="materialContactFormName" class="form-control"><?php echo $news['text']; ?></textarea><br><br>
+                          </div>
+
+
+                          <div class="form-check">
+                                        <label class="form-check-label" for="materialContactFormCopy"><h4>اذا كان النوع تحليلي</h4></label>
+                              <p><input type="checkbox" name="analytics" value="yes" class="form-check-input" id="materialContactFormCopy" <?php if ($news['analitics']=='yes')echo 'checked'; ?> نوع المقال تحليلي "analytics"?</p>
+
+                          </div>
+
+
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4>هاشتاق:</h4></label>
+                            <p>يرجى ادخال الهشتاق باتباع التعليمات الاتية:</p>
+                            <p>1. يتم فصل كل هاستاق بمسافة;</p>
+                            <p>2. كل هشاتق يبتداء بعلامة '#' ;</p>
+                            <p>3. يجب ان لايكون هناك مسافة بين علامة  '#' والهاستاق;</p>
+                            <p>3. يجب ان لايحتوي الهاشتاق على مسافة;</p>
+
+                  <input type="text" value="<?php echo $news['tags']; ?>" name="tags" placeholder="Tags" id="materialContactFormName" class="form-control"><br>
+                          </div>
+
+
+                          <div class="md-form mt-3">
+                            <div class="form_group_img " >
+                              <input name="image" type="file" id="Image" accept="image/*" onchange="preview_image(event)" style="display: none;">
+                              <img id="target" src="/pictures/<?php  echo $news['picture']; ?>" class="img-circle mr-5"  style="margin-right: 100px; width:40%; height:40%;">
+                                    <div id="yourBtn" class="btn btn-default clearfix" style=" clear: both; display: block; width: 15%;cursor:pointer; margin: 30px 70px 30px 0px;" onclick="getFile()">تغيير الصورة</div>
+                            </div>
+
+
+                          </div>
+
+
+
+                          <button type="submit" name="submit" class="btn btn-primary col-md-12"  value="submit">رفع</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                </section><!-- /.content -->
+
+      <?php include "buttom.phtml" ?>

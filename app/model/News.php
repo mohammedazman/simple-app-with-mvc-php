@@ -48,12 +48,37 @@ public function add(array $aData)
   public function findTags($aData)
   {
     $likeVar = "%".$aData[0] ."%";
-    
+
     $oStmt = $this->db->preparation('SELECT * FROM news WHERE tags LIKE  ? ');
   $oStmt->execute( array(0 => $likeVar));
 
         return $oStmt->fetchAll();
 
+  }
+  public function delete($id)
+  {
+    $oStmt = $this->db->preparation('DELETE FROM news WHERE id=?');
+
+        return $oStmt->execute($id);
+  }
+  public function update($aData)
+  {
+
+    if (isset($aData[':picture'])) {
+        $oStmt = $this->db->preparation('UPDATE  news
+                                          SET   title=:title, text=:content, picture=:picture, category=:category, tags=:tags, analitics=:analitics, url=:url
+                                          WHERE id=:id ');
+    }
+    else {
+      $oStmt = $this->db->preparation('UPDATE  news
+                                        SET   title=:title, text=:content,category=:category, tags=:tags, analitics=:analitics, url=:url
+                                        WHERE id=:id ');
+    }
+
+
+              return $oStmt->execute($aData);
+
+      
   }
 
 

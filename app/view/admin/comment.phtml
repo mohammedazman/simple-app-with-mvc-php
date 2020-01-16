@@ -3,18 +3,19 @@
 
                   <div class="box">
                                                   <div class="box-header">
-                                                      <h3 class="box-title">عرض جميع المقالات والاخبار</h3>
+                                                      <h3 class="box-title">عرض جميع الفئات</h3>
                                                   </div><!-- /.box-header -->
                                                   <div class="box-body table-responsive">
                                                       <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid"><div class="row"><div class="col-xs-6"><div id="example1_length" class="dataTables_length"><label><select size="1" name="example1_length" aria-controls="example1"><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> سجل او صف لكل صفحة</label></div></div><div class="col-xs-6"><div class="dataTables_filter" id="example1_filter"><label>بحث: <input type="text" aria-controls="example1"></label></div></div></div><table id="example1" class="table table-bordered table-striped dataTable" aria-describedby="example1_info">
                                                           <thead>
                                                               <tr role="row">
-                                                                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 187px;">العنوان</th>
-                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 272px;">المحتوى</th>
-                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 253px;">الصورة</th>
-                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 160px;">الفئات</th>
-                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 116px;">هاشتاقات</th>
-                                                                  <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 116px;">الحدث</th>
+                                                                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 187px;">#ID</th>
+                                                                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 187px;">رقم المستخدم</th>
+                                                                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 187px;">رقم المقال</th>
+                                                                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 187px;">التعليق</th>
+                                                                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 187px;">تاريخ التعليق</th>
+                                                                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 187px;">ادارة</th>
+
                                                               </tr>
                                                           </thead>
 
@@ -27,21 +28,23 @@
                                                           </tfoot> -->
                                                       <tbody role="alert" aria-live="polite" aria-relevant="all">
                                                         <?php
-                                                         if (array_key_exists('news',$this->view_data)){
+                                                         if (array_key_exists('comments',$this->view_data)){
 
                                                           $table='';
 
-                                                          foreach ($this->view_data['news'] as $new) {
+                                                          foreach ($this->view_data['comments'] as $comment) {
 
 
                                                                   $table.='<tr class="odd">';
-                                                                  $table.=' <td class="  sorting_1">'.$new["title"].'</td>';
-                                                                  $table.=' <td class="  ">'.$new["text"].'</td>';
-                                                                  $table.=' <td class="  ">'.$new["picture"].'</td>';
-                                                                  $table.=' <td class="  ">'.$new["category"].'</td>';
-                                                                  $table.=' <td class="  ">'.$new["tags"].'</td>';
+                                                                  $table.=' <td class="  sorting_1">'.$comment["id"].'</td>';
+                                                                  $table.=' <td class="  ">'.$comment["user_id"].'</td>';
+                                                                  $table.=' <td class="  ">'.$comment["news_id"].'</td>';
+                                                                  $table.=' <td class="  ">'.$comment["text_com"].'</td>';
+                                                                  $table.=' <td class="  ">'.$comment["date_com"].'</td>';
 
-                                                                  $table.=' <td><a href="/news/edit/'.$new["id"].'">Edit</a> / <a href="/news/delete/'.$new["id"].'">Delete</a></td>';
+
+
+                                                                  $table.=' <td><a href="/comment/edit/'.$comment["id"].'">Edit</a> / <a href="/comment/delete/'.$comment["id"].'">Delete</a></td>';
                                                           }
 
 

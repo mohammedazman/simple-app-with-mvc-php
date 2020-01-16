@@ -1,5 +1,7 @@
 
-<?php include "top.phtml" ?>
+<?php include "top.phtml";
+$accounts=$this->view_data['accounts'];
+ ?>
                 <section class="content">
 
                   <div class="box">
@@ -22,36 +24,36 @@
                                                           <div class="box-body">
                                                               <div class="form-group">
                                                                   <label for="exampleInputEmail1">البريد الالكتروني:</label>
-                                                                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ادخل البريد الالكتروني" name="email">
+                                                                  <input type="email" value="<?php echo $accounts['email']; ?>" class="form-control" id="exampleInputEmail1" placeholder="ادخل البريد الالكتروني" name="email">
                                                                 <?php echo Message::check('email');  ?>
                                                               </div>
                                                               <div class="form-group">
                                                                   <label for="exampleInputEmail1">:اسم المستخدم</label>
-                                                                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ادخل اسم المستخدم" name="username">
+                                                                  <input type="text" value="<?php echo $accounts['username']; ?>" class="form-control" id="exampleInputEmail1" placeholder="ادخل اسم المستخدم" name="username">
                                                               <?php echo Message::check('username');  ?>
                                                               </div>
                                                               <div class="form-group">
                                                                   <label for="exampleInputPassword1">كلمة السر:</label>
-                                                                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="كلمة السر" name="password">
+                                                                  <input type="password" value="<?php echo $accounts['password']; ?>" class="form-control" id="exampleInputPassword1" placeholder="كلمة السر" name="password">
                                                                   <?php echo Message::check('password');  ?>
                                                               </div>
                                                               <div class="form-group">
                                                                   <label for="exampleInputPassword2">تاكيد كلمة السر:</label>
-                                                                  <input type="password" class="form-control" id="exampleInputPassword2" placeholder="تاكيد كلمة السر" name="passwordConfirm">
+                                                                  <input type="password" value="<?php echo $accounts['password']; ?>" class="form-control" id="exampleInputPassword2" placeholder="تاكيد كلمة السر" name="passwordConfirm">
                                                                   <?php echo Message::check('passwordConfirm');  ?>
                                                               </div>
                                                               <div class="form-group">
                                                             <label for="Select" class="col-sm-2 control-label">نوع المستخدم:</label>
 
                                                               <select id="Select" class="form-control" name="type">
-                                                                <option value="User">User</option>
-                                                                <option value="Admin">Admin</option>
+                                                                <option value="User" <?php  if($accounts['type']=='User')echo 'selected'; ?>>User</option>
+                                                                <option value="Admin"<?php  if($accounts['type']=='Admin')echo 'selected'; ?>>Admin</option>
                                                               </select>
                                                               <?php echo Message::check('type');  ?>
                                                           </div>
                                                               <div class="checkbox">
 
-                                                            <label><input type="checkbox" value="1" name="status">تفعيل الحساب</label>
+                                                            <label><input type="checkbox" value="1" name="status" <?php  if($accounts['status']==1)echo 'checked'; ?>>تفعيل الحساب</label>
                                                             </div>
                                                                                                                       </div>
 

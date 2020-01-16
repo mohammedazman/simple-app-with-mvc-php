@@ -1,0 +1,35 @@
+<?php include "top.phtml";
+$categoryErr='';
+$category=$this->view_data['categories'];
+ ?>
+
+                <section class="content">
+
+                  <div class="box">
+                                                  <div class="box-header">
+                                                    <h2 class="card-header info-color white-text text-center py-4">
+                                                        <strong>تحرير فئة </strong>
+                                                    </h2>
+                                                  </div><!-- /.box-header -->
+                                                  <div class="box-body table-responsive">
+                  <div class="card">
+
+
+
+                      <form id='newcategory' method='post' action='' enctype='multipart/form-data'>
+                          <div class="newArt">
+
+                          <div class="md-form mt-3">
+                            <label for="materialContactFormName"><h4> العنوان * </h4></label>
+                              <input type="text" value="<?php echo $category['cat_title']; ?>" name="title" placeholder="Title" id="materialContactFormName" class="form-control"><br><br>
+
+                          </div>
+                          <button type="submit" name="submit" class="btn btn-primary" value="submit">اضافة الفئة</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                </section><!-- /.content -->
+
+      <?php include "buttom.phtml" ?>

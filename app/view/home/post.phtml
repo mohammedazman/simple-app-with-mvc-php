@@ -31,10 +31,10 @@
                   $html.='<a href="#"><h2>'.$value["title"].'</h2></a>
                   <div class="blog-meta clearfix">
                       <p class="pull-left">
-                       <i class="icon-user"></i> by <a href="#">mohammed azman</a> | <i class="icon-folder-close"></i> category <a href="#">'.Helper::catName($value["category"]).'</a> | <i class="icon-calendar"></i> '.$value["date"].'
+                       <i class="icon-user"></i> بواسطة <a href="#">محمد عزمان</a> | <i class="icon-folder-close"></i> نوع الفئة <a href="#">'.Helper::catName($value["category"]).'</a> | <i class="icon-calendar"></i> '.$value["date"].'
                     </p>
 
-                    <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">'.Helper::countComments($value["id"]).'  Comments</a></p>
+                    <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">'.Helper::countComments($value["id"]).'  من التعليقات</a></p>
                     </div>
                     <p><img src="/pictures/'.$value["picture"].'" width="100%" style="height:50%;" alt="" /></p>
                     <p>'.$value["text"].'</p><br><br><br><br><br>
@@ -74,7 +74,7 @@
 
                     <h4><?php
                       $news=$this->view_data['news'];
-                     echo Helper::countComments($news["id"]); ?> Comments</h4>
+                     echo Helper::countComments($news["id"]); ?> من التعليقات</h4>
                     <div class="comments-list">
                       <?php
                       $html='';
@@ -91,14 +91,19 @@
 
                                 $html.='  <div class="comment media">
                                     <div class="pull-left">
-                                        <img class="avatar" src="/pictures/default.png" alt="" />
+                                        <img class="avatar" src="/pictures/default.jpg" alt="" />
                                     </div>
 
                                     <div class="media-body">
-                                        <strong>Posted by <a href="#">'.Helper::userName($comments["user_id"]).'</a></strong><br>
+                                        <strong>تم التعليق بواسطة: <a href="#">'.Helper::userName($comments["user_id"]).'</a></strong><br>
                                         <small>'.$comments["date_com"].'</small><br>
                                         <p>'.$comments["text_com"].'</p>
                                     </div>
+                                    <form method="post" action="/home/addActivity" class="activity">
+                                    <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+                                       <input class="qty1" name="activity" readonly="readonly" type="hidden" value="" />
+                                       </form>
+
                                 </div>';
 
                         }
@@ -121,21 +126,32 @@
                     </div>
 
                     <!-- Start Comment Form -->
+                    <?php if (Session::logged()): ?>
+
+
                     <div class="comment-form">
-                        <h4>Leave a Comment</h4>
-                        <p class="muted">Make sure you enter the (*) required information where indicated. HTML code is not allowed.</p>
+                        <h4>ضع تعليقك هنا</h4>
+                        <p class="muted"> ملاحظة التعليقات التي يتم عرضها هي من قب الزوار ولاتمت للموقع بصلة.</p>
                         <form name="comment-form" id="comment-form" method="post" action="/home/addComment">
 
 
-                                    <input  name="userID" value="<?php echo Session::get('userID'); ?>"  hidden />
-                                    <input  name="news_id" value="<?php echo $value["id"]; ?>"  hidden />
+
+                                    <input  name="news_id" value="<?php echo $this->view_data['news']['id']; ?>"  hidden />
 
 
                             <textarea rows="10" name="comment" id="message"  class="input-block-level" placeholder="Message"></textarea>
-                            <input type="submit" value="Submit Comment" class="btn btn-large btn-primary" />
+                            <input type="submit" value="اضافة التعليق" class="btn btn-large btn-primary" />
                         </form>
                     </div>
                     <!-- End Comment Form -->
+
+
+                  <?php else: ?>
+                    <div class="comment-form">
+                        <h4>قم بتسجيل الدخول ليمكنك التعليق!</h4>
+
+                    </div>
+                  <?php endif; ?>
 
                 </div>
 

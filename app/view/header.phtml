@@ -19,11 +19,13 @@
         <link rel="stylesheet" href="/css/sl-slide.css">
         <link rel="stylesheet" href="/css/bootstrap-rtl.min.css">
           <link rel="stylesheet" href="/css/bootstrap-rtl.css">
-          <link rel="stylesheet" href="/css/style.css">
+
             <link rel="stylesheet" href="/css/style_news.css">
+            <link rel="stylesheet" href="/css/styles.css">
 
         <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amiri|Tajawal|Vibes&display=swap" rel="stylesheet">
         <!-- Le fav and touch icons -->
         <link rel="shortcut icon" href="/images/ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
@@ -46,7 +48,14 @@
                   <a id="logo" class="pull-left" href="index"></a>
                   <div class="nav-collapse collapse pull-right">
                       <ul class="nav">
-                          <li class="active"><a href="/home/index">الرئيسية</a></li>
+                        <li class="login">
+
+                          <?php
+
+                          if(Session::logged()) echo '<a  href="/home/logout">تسجيل الخروج <i class="icon-unlock"></i></a>'; else echo'<a data-toggle="modal" href="#loginForm">تسجيل الدخول <i class="icon-lock"></i> </a>'; ?>
+
+                        </li>
+
                           <li><a href="/home/aboutUs">من نحن</a></li>
                           <li><a href="/home/services">خدماتنا</a></li>
                           <li><a href="/home/Portfolio">نبذة</a></li>
@@ -66,13 +75,8 @@
                           </li>
                           <li><a href="/home/articles">مقالات</a></li>
                           <li><a href="/home/contact">تواصل معانا</a></li>
-                          <li class="login">
+                            <li class="active"><a href="/home/index">الرئيسية</a></li>
 
-                            <?php
-
-                            if(Session::logged()) echo '<a  href="/home/logout"><i class="icon-unlock">logout</i></a>'; else echo'<a data-toggle="modal" href="#loginForm"><i class="icon-lock">login</i></a>'; ?>
-
-                          </li>
                       </ul>
                   </div><!--/.nav-collapse -->
               </div>

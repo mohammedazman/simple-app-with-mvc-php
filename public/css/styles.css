@@ -1,6 +1,9 @@
 /* body */
 body {
-    font-family: Oswald, Arial;
+  font-family: 'Tajawal', sans-serif;
+/* font-family: 'Vibes', cursive;
+font-family: 'Amiri', serif; */
+
     background: #ffffff;
 }
 
@@ -244,4 +247,50 @@ h5 {
 
 .newComment {
     margin-left: 40px;
+}
+.form_group_img {
+    position: relative;
+    border: 1px solid black;
+    display: block;
+    margin: 50px auto;
+    clear: both;
+    background-color: #fffdfd;
+    padding: 10px;
+    border-radius: 10PX;
+    height: 130px;
+
+}
+
+
+.form_group_img img {
+    float: right;
+    width:70%;
+    height:100px;
+    border: 1px dashed #BBB;
+
+}
+.comment{
+  box-shadow:  -1px;
+}
+.like, .dislike {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background: lightgreen;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    border-radius: 4px;
+}
+.qty1, .qty2 {
+
+    border: none;
+    width:20px;
+    background: transparent;
+
 }

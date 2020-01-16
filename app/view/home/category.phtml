@@ -14,7 +14,7 @@ $value=$this->view_data['categories'];
     $category = $value["cat_title"];
     $category_id = $value["id"];
 
-    if (!empty(Helper::haveItem($category_id))) {
+    if (!empty(Helper::haveItem($category_id,$this->view_data['news']))) {
       $html .= '<div class="panel panel-default">
       <div class="panel-heading" ><a  href="categories/' . $category_id . '.' . "php" . '"><h1 class="cat_header alert alert-success text-center ">' . ucfirst($category) . '</h1></a></div><br>';
 

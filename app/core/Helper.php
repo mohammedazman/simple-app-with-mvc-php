@@ -28,7 +28,7 @@
            $upload_ok = 0;
        }
    // Check file size
-       if ($file_size > 90000000) {
+       if ($file_size > 9000000000) {
            $uploadErr .= "Sorry, your file is too large.";
            $upload_ok = 0;
        }
@@ -59,14 +59,67 @@
      return $counter[0]['count'];
    }
 
+   #return COUNT of comments
+     public static function  countComment()
+     {
+       $db= new Model();
+       $counter =$db->query("select count(*) as count from comments");
+       return $counter[0]['count'];
+     }
+
+     #return COUNT of activities
+       public static function  countlikes()
+       {
+         $db= new Model();
+         $counter =$db->query("select count(likes) as count from likes");
+         return $counter[0]['count'];
+       }
+       #return COUNT of activities
+         public static function  countdislikes()
+         {
+           $db= new Model();
+           $counter =$db->query("select count(dislikes) as count from likes");
+           return $counter[0]['count'];
+         }
+
+       #return COUNT of users
+         public static function  countUsers()
+         {
+           $db= new Model();
+           $counter =$db->query("select count(*) as count from users");
+           return $counter[0]['count'];
+         }
+
+         #return COUNT of categories
+           public static function  countCategories()
+           {
+             $db= new Model();
+             $counter =$db->query("select count(*) as count from categories");
+             return $counter[0]['count'];
+           }
 
 
    #check if category have posts or news @param is of category from news row
-   public static function haveItem($value)
+   public static function haveItem($data, $arr)
    {
-     $db= new Model();
-     $counter =$db->query("SELECT *  FROM news WHERE category = $value ");
-     return $counter;
+
+
+     if (!empty($arr)) {
+       foreach ($arr as $key => $values) {
+
+            if ($data==$values['category']) {
+
+            return 1;
+            }
+
+       }
+
+     }
+
+
+    return 0;
+
+
    }
 
    #return string of category's name @param id of category that come from news row
@@ -124,6 +177,8 @@
 
           return $tags;
       }
+
+
 
  }
 

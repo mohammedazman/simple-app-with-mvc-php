@@ -115,8 +115,9 @@ public function viewPost($id)
 
   $news= $this->model('News');
   $comments= $this->model('Comments');
+    $category= $this->model('Category');
 
-  $this->view('home'.DIRECTORY_SEPARATOR.'post',['news'=>$news->find( array(0 =>$id)),'comments'=>$comments->newComments(array(0 =>$id))]);
+  $this->view('home'.DIRECTORY_SEPARATOR.'post',['news'=>$news->find( array(0 =>$id)),'comments'=>$comments->newComments(array(0 =>$id)),'category'=>$category->all()]);
   $this->view->pageTitle='this page of index';
 
   $this->view->render();
@@ -137,8 +138,8 @@ public function addComment()
                  return;
                  }
 
-
-          $userForm= array(':text_com' =>$_REQUEST['comment'] ,':user_id' =>$_REQUEST['userID'] ,':news_id' =>$_REQUEST['news_id']);
+print_r($_REQUEST);
+          $userForm= array(':text_com' =>$_REQUEST['comment'] ,':user_id' =>Session::get('userID') ,':news_id' =>$_REQUEST['news_id']);
           $this->model('Comments');
          $this->model->add($userForm);
          Message::setMessage('status',1);

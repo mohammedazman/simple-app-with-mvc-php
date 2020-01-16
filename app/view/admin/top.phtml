@@ -5,20 +5,27 @@
         <title><?php print $this->pageTitle; ?></title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
+
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
         <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Amiri|Tajawal|Vibes&display=swap" rel="stylesheet">
+
         <!-- Ionicons -->
         <link href="/css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+
+        <link href="/css/styles.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
         <![endif]-->
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     </head>
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
@@ -52,7 +59,7 @@
                                         <li><!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar3.png" class="img-circle" alt="User Image"/>
+                                                    <img src="/img/avatar3.png" class="img-circle" alt="User Image"/>
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -64,7 +71,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="/img/avatar2.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
@@ -76,7 +83,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="/img/avatar.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Developers
@@ -88,7 +95,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="/img/avatar2.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Sales Department
@@ -100,7 +107,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="/img/avatar.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Reviewers
@@ -230,12 +237,13 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>محمد عزمان <i class="caret"></i></span>
+                                <span><?php
+                                 echo Session::get('userName'); ?> <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="img/avatar3.png" class="img-circle" alt="صورة المستخدم" />
+                                    <img src="/img/avatar3.png" class="img-circle" alt="صورة المستخدم" />
                                     <p>
                                         محمد عزمان - مطورويب
                                         <small>عضو منذ. 2012</small>
@@ -276,10 +284,11 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="img/avatar3.png" class="img-circle" alt="صورة المستخدم" />
+                            <img src="/img/avatar3.png" class="img-circle" alt="صورة المستخدم" />
                         </div>
                         <div class="pull-left info">
-                            <p>مرحبا,محمد</p>
+                            <p>مرحبا:<?php 
+                             echo Session::get('userName'); ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> متصل</a>
                         </div>
@@ -297,18 +306,18 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="index.html">
+                            <a href="index">
                                 <i class="fa fa-dashboard"></i> <span>لوحة التحكم</span>
                             </a>
                         </li>
                         <li>
-                            <a href="pages/widgets.html">
+                            <a href="/analytic/index">
                                 <i class="fa fa-th"></i> <span>احصائيات</span> <small class="badge pull-right bg-green">new</small>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/admin/index">
-                              <small class="badge pull-right bg-red"><?php
+                            <a href="#">
+                              <small class="badge pull-right bg-green"><?php
 
                                print Helper::countNews();  ?></small>
                                 <i class="fa fa-bar-chart-o"></i>
@@ -319,51 +328,71 @@
 
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i>  فرع1</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i>  فرع2</a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> فرع 3</a></li>
+                                <li><a href="/news/add"><i class="fa fa-angle-double-right"></i>  اضافة خبر جديد</a></li>
+                                <li><a href="/news/index"><i class="fa fa-angle-double-right"></i>  ادارءة جميع المقالات</a></li>
+
                             </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">
+                              <small class="badge pull-right bg-green"><?php
+
+                               print Helper::countComment();  ?></small>
                                 <i class="fa fa-laptop"></i>
-                                <span>التفاعلات</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                                <span>التعليقات</span>
+                                <i class="fa fa-angle-left pull-green"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> عام </a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> ايقونات</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> تشكيلات</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> مشاهدات</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> اوقات مختلغة</a></li>
+                                <li><a href="/comment/add"><i class="fa fa-angle-double-right"></i> اضافة تعليق جديد </a></li>
+                                <li><a href="/comment/index"><i class="fa fa-angle-double-right"></i> ادارة التعليقات</a></li>
+
                             </ul>
                         </li>
                         <li class="treeview">
-                            <a href="/admin/addNews">
-                                <i class="fa fa-edit"></i> <span>اضافة مقالة</span>
+                            <a href="#">
+                              <small class="badge pull-right bg-green">
+                                <?php
+
+                               print Helper::countlikes();  ?>
+                              </small>
+                              <small class="badge pull-right bg-red"> <?php
+
+                               print Helper::countdislikes();  ?>
+                             </small>
+
+                                <i class="fa fa-edit"></i> <span> التفاعلات</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> عناصر عامة</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> عناصر متقدمة</a></li>
-                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> محررات</a></li>
+                                <li><a href="/activity/add"><i class="fa fa-angle-double-right"></i>اضافة تفاعل جديد</a></li>
+                                <li><a href="/activity/index"><i class="fa fa-angle-double-right"></i>ادارة التفاعلات</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
                             <a href="/admin/addUser">
+                              <small class="badge pull-right bg-green"><?php
+
+                               print Helper::countUsers();  ?></small>
                                 <i class="fa fa-table"></i> <span>الحسابات</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> جداول بسيطة</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> جداول البيانات</a></li>
+                                <li><a href="/user/add"><i class="fa fa-angle-double-right"></i>اضافة حساب جديد</a></li>
+                                <li><a href="/user/index"><i class="fa fa-angle-double-right"></i> ادارة الحسابات</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-calendar"></i> <span>المهام</span>
+                        <li class="treeview">
+                            <a href="/admin/addUser">
+                              <small class="badge pull-right bg-green"><?php
 
+                               print Helper::countCategories();  ?></small>
+                                <i class="fa fa-table"></i> <span>الفئات</span>
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/category/add"><i class="fa fa-angle-double-right"></i>اضافة فئة جديدة</a></li>
+                                <li><a href="/category/index"><i class="fa fa-angle-double-right"></i> ادارة الفئات</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="pages/mailbox.html">

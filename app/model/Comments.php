@@ -39,6 +39,37 @@ $oStmt->execute($aData);
 
 }
 
+//
+
+public function find($aData)
+{
+  $oStmt = $this->db->preparation('SELECT * FROM comments WHERE id =?');
+$oStmt->execute($aData);
+      return $oStmt->fetch();
+
+}
+
+//
+
+public function update($aData)
+{
+        $oStmt = $this->db->preparation('UPDATE  comments
+                                        SET   text_com=:text_com,user_id=:user_id,news_id=:news_id
+                                        WHERE id=:id ');
+        return $oStmt->execute($aData);
+
+}
+
+//
+public function delete($id)
+{
+  $oStmt = $this->db->preparation('DELETE FROM comments WHERE id=?');
+
+      return $oStmt->execute($id);
+}
+
+
+
 }
 
 

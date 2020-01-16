@@ -1,0 +1,63 @@
+
+<?php include "top.phtml" ?>
+                <section class="content">
+
+                  <div class="box">
+                                                  <div class="box-header">
+                                                      <h3 class="box-title">اضافة تفاعلات </h3>
+
+                                                  </div><!-- /.box-header -->
+                                                  <div class="box-body table-responsive">
+                                                    <div class="wrapper">
+
+
+                                                    <b></b>
+                                                    <div class="box box-primary">
+                                                      <div class="box-header">
+                                                          <h3 class="box-title">بيانات التفاعلات</h3>
+
+                                                      </div><!-- /.box-header -->
+                                                      <!-- form start -->
+                                                      <form role="form" method='post' action='' id="newComments">
+                                                          <div class="box-body">
+
+                                                              <div class="form-group">
+                                                                  <label for="exampleInputEmail1">:رقم التعليق</label>
+                                                                  <input type="number" class="form-control" id="exampleInputEmail1" placeholder="ادخل رقم التعليق" name="commentId">
+                                                                <?php echo Message::check('commentId');  ?>
+                                                              </div>
+                                                              <div class="form-group">
+                                                                  <label for="exampleInputEmail1">:رقم المستخدم المتفاعل</label>
+                                                                  <input type="number" class="form-control" id="exampleInputEmail1" placeholder="ادخل رقم المستخدم" name="userId">
+                                                              <?php echo Message::check('userId');  ?>
+                                                              </div>
+
+
+                                                              <div class="form-group">
+                                                              <select class="form-control" name="activity">
+                                                                <option value="1">اعجاب</option>
+                                                                  <option value="2">غير معجب</option>
+
+                                                              </select>
+                                                              <?php echo Message::check('text_comment');  ?>
+                                                              </div>
+
+                                                                                                                      </div>
+
+                                                          </div><!-- /.box-body -->
+
+                                                          <div class="box-footer">
+                                                              <button type="submit" class="btn btn-primary" name="submit"  value="register">اضافة التفاعل</button>
+                                                          </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                    <br/>
+
+                                                        <div class="push"></div>
+                                                    </div>
+                                                  </div><!-- /.box-body -->
+                                              </div>
+                </section><!-- /.content -->
+
+      <?php include "buttom.phtml" ?>

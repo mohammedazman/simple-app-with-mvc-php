@@ -67,6 +67,7 @@
 
 <!-- SL Slider -->
 <script type="text/javascript">
+
 $(function() {
     var Page = (function() {
 
@@ -96,6 +97,24 @@ $(function() {
 
     Page.init();
 });
+
+
+</script>
+<script type="text/javascript">
+function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+  var input = $(this).find('.qty1');
+  var submit =$(this).find('.activity');
+  if (input.val()=='' or input.val()='dislike') {
+    input.val('likes');
+
+  }
+  else {
+    input.val('dislike');
+  }
+
+
+}
 </script>
 <!-- /SL Slider -->
 </body>

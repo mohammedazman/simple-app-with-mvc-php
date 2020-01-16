@@ -20,10 +20,11 @@
                   <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="-9" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
                       <div class="sl-slide-inner">
                           <div class="container">';
-                  $html.='<img class="pull-right"  src="/pictures/'.$new["picture"].'" alt="'.$new["title"].'" />';
+
+                  $html.='<h1>..........</h1><img class="pull-right"  src="/pictures/'.$new["picture"].'" alt="'.$new["title"].'" />';
                   $html.=' <h2>'.$new["title"].'</h2>';
                   $html.='<h3 class="gap">'.$new["tags"].'</h3> ';
-                  $html.=' <a href=news?id="'.$new["id"].'" class="btn btn-large btn-transparent"> عرض</a>';
+                  $html.=' <a href="/home/viewPost/'.$new["id"].'" class="btn btn-large btn-transparent"> عرض</a>';
                     $html.=' </div></div></div>
                     </div>
                     <!--/Slider Items-->';
@@ -60,9 +61,9 @@ foreach ($this->view_data['category'] as $key=>$value)
     $category = $value["cat_title"];
     $category_id = $value["id"];
 
-    if (!empty(Helper::haveItem($category_id))) {
+    if (Helper::haveItem($category_id,$this->view_data['news'])) {
       $html .= '<div class="panel panel-default">
-      <div class="panel-heading" ><a  href="categories/' . $category_id . '.' . "php" . '"><h1 class="cat_header alert alert-success text-center ">' . ucfirst($category) . '</h1></a></div><br>';
+      <div class="panel-heading" ><a  href="categories/' . $category_id . '"><h1 class="cat_header alert alert-success text-center ">' . ucfirst($category) . '</h1></a></div><br>';
 
       $html .= '<div class="articles">' ;
       $html .= '<div class="panel-body">';
@@ -74,15 +75,15 @@ foreach ($this->view_data['category'] as $key=>$value)
           <a href="#"><h2>'.$value["title"].'</h2></a>
           <div class="blog-meta clearfix">
               <p class="pull-left">
-               <i class="icon-user"></i> by <a href="#">mohammed azman</a> | <i class="icon-folder-close"></i> category <a href="#">'.$category.'</a> | <i class="icon-calendar"></i> '.$value["date"].'
+               <i class="icon-user"></i> بواسطة <a href="#">محمد عزمان</a> | <i class="icon-folder-close"></i> نوع الفئة <a href="#">'.Helper::catName($value["category"]).'</a> | <i class="icon-calendar"></i> '.$value["date"].'
             </p>
 
-            <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">'.Helper::countComments($value["id"]).' Comments</a></p>
+            <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">'.Helper::countComments($value["id"]).'  من التعليقات</a></p>
             </div>
-          <p><img src="/pictures/'.$value["picture"].'" width="100%" style="height:50%;" alt="" /></p>
-          <p>'.$value["text"].'</p><br><br><br><br><br>
-          <br>
-          <a class="btn btn-link " href="/home/viewPost/'.$value['id'] .'">Read More <i class="icon-angle-right"></i></a>
+          <p><img src="/pictures/'.$value["picture"].'" width="100%" style="height:400px;" alt="" /></p>
+          <p>'.substr($value["text"],0,500).'</p><br>
+
+          <a class="btn btn-link " href="/home/viewPost/'.$value['id'] .'">اقراء المزيد <i class="icon-angle-left"></i></a>
           <br><hr>
 
           </div>';

@@ -63,6 +63,22 @@ abstract class Session
         unset($_SESSION[$key]);
     }
 
+    public static function isAdmin()
+    {
+      if (!isset($_SESSION['type'])) {
+        return false;
+      }
+  
+
+        if ($_SESSION['type']=='Admin') {
+        return true;
+        }
+        else {
+          return false;
+        }
+    }
+
+
     /**
      * destroy
      */
